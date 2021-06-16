@@ -1,0 +1,37 @@
+[ {
+	"userId": 1,
+	"firstName": "Ada",
+	"lastName": "Lovelace",
+	"role" : "Admin"
+	},
+	{
+	"userId": 2,
+	"firstName": "Grace",
+	"lastName": "Hopper",
+	"role" : "Developer"
+	},
+	{
+	"userId": 3,
+	"firstName": "Margarei",
+	"lastName": "Hamilton",
+	"role" : "QA"
+	},
+	{
+	"userId": 4,
+	"firstName": "Joan",
+	"lastName": "Clarke",
+	"role" : "Manager"
+	},
+	{
+	"userId": 5,
+	"firstName": "Taylor",
+	"lastName": "Swift",
+	"role" : "Developer"
+	},
+	{
+	"userId": 6,
+	"firstName": "Taeyeon",
+	"lastName": "Kim",
+	"role" : "Manager"
+	}
+]

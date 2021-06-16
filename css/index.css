@@ -1,7 +1,8 @@
 :root {
 	--primary-color: #48b0b0;
 	--secondary-color: #4a4a4a;
-	--user-list-grey: #c9c9c9;
+	--border-color: #a1a1a1;
+	--user-content-grey: #cfcfcf;
 	--nav-background: #f0f0f0;
 	--font: sans-serif;
 }
@@ -55,7 +56,7 @@ header {
 .account {
 	display: inline-block;
 	position: absolute;
-	right: 15rem;
+	right: 12rem;
 	font-family: var(--font);
 	color: var(--secondary-color);
 }
@@ -68,7 +69,7 @@ header {
 .account div:nth-child(2) {
 	font-size: 1.6rem;
 	text-align: end;
-	padding: 0.25rem 1rem 1em 1rem;
+	padding: 0.25rem 1rem 1rem 1rem;
 	cursor: pointer;
 }
 
@@ -76,11 +77,13 @@ header {
 	position: absolute;
 	right: 5rem;
 	border-radius: 50%;
-	width: 7rem;
+	width: 6rem;
 }
 
 .user-content {
+	position: relative;
 	margin: 5rem;
+	overflow: hidden;
 }
 
 h1 {
@@ -93,7 +96,7 @@ h1 {
 .search-box {
 	width: 22rem;
 	margin: 2rem 0 2rem 0;
-	border: 1px solid black;
+	border: 1px solid var(--border-color);
 	border-radius: 2rem;
 	position: relative;
 }
@@ -102,9 +105,10 @@ h1 {
 	margin: 0.5rem;
 	height: 2rem;
 	width: 2rem;
+	fill: var(--secondary-color);
 }
 
-.search-box input {
+.search-box input { 
 	position: absolute;
 	bottom: 20%;
 	width: 18rem;
@@ -112,8 +116,120 @@ h1 {
 	border: none;
 }
 
+.user-details-table {
+	margin-bottom: 8rem;
+	height: 20.1rem;
+	overflow-y: auto;
+	position: relative;
+}
+
+table {
+	border-collapse: collapse;
+	font-family: var(--font);
+	text-align: left;
+	table-layout: fixed;
+}
+
+thead th {
+	position: sticky;
+	z-index: -1;
+	background-color: var(--user-content-grey);
+	top: 0;
+}
+
+tbody td {
+	position: relative;
+	z-index: -2;
+}
+
+td, th {
+	width: 40vw;
+	height: 4rem;
+	padding-left: 1rem;
+	border: 1px solid var(--secondary-color);
+}
+
+th:last-child, td:last-child {
+	width: 10vw;
+	text-align: center;
+}
+
+.new-user-details {
+	width: 60%;
+	margin-bottom: 5rem;
+}
+
+.new-user-details h1 {
+	padding-bottom: 1rem;
+	border-bottom: 4px solid var(--nav-background);
+}
+
+.new-user-details div {
+	margin: 1rem 0;
+	position: relative;
+	font-family: sans-serif;
+	font-size: 1.5rem;
+	color : var(--secondary-color);
+}
+
+.user-name, .e-mail, .firstn, .lastn {
+	display: inline-block;
+	width: 40rem;
+	border: solid 1px var(--border-color);
+}
+
+.user-name, .firstn {
+	margin-right: 15rem !important;
+}
+
+#username, #email, #first-name, #last-name {
+	width: 39rem;
+	padding: 2rem 0.5rem 0.5rem 1rem;
+	outline: none;
+	border: none; 
+}
+
+.user-name label, .e-mail label, .firstn label, .lastn label {
+	position: absolute;
+	left: 2%;
+	top: 25%;
+	transition: font-size 0.4s ease-out,
+				transform 0.4s ease-out,
+				color;
+}
+
+#username:focus + label, #email:focus + label, #first-name:focus + label,
+#last-name:focus + label {
+	transform: translateY(-70%);
+	font-size : 1.2rem;
+	color: var(--primary-color);
+}
+
+.user-name:focus-within , .e-mail:focus-within, .firstn:focus-within,
+.lastn:focus-within {
+	border: 1px solid var(--primary-color);
+}
+
+#role {
+	width: 40rem;
+	padding: 1.5rem 1rem 1.5rem 1rem;
+	font-size: 1.5rem;
+	color: var(--secondary-color);
+	background: none;
+	border: 1px solid var(--border-color);
+	outline: none;
+}
+
+#role + label {
+	position: absolute;
+	left: 0;
+	padding: 1rem;
+	padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+} 
+
 .form-submit-buttons {
-	padding: 3rem 0 0 ;
+	width: 100%;
+	padding: 2rem 0 0 ;
 	border-top: 4px solid var(--nav-background);
 }
 
@@ -133,7 +249,6 @@ button {
 }
 
 #cancel {
-	background: var(--user-list-grey);
+	background: var(--user-content-grey);
 	color: var(--secondary-color);
 }
-

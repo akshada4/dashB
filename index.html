@@ -50,19 +50,60 @@
 				<svg>
 					<use xlink:href="icons/moreicons.svg#loupe"></use>
 				</svg> 
-				<input type="text" name="search" placeholder="Search">
+				<input type="search" name="search" placeholder="Search">
 			</div>
-			<!-- <div>
-				table
+			<div class="user-details-table">
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Role</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+				</table>
 			</div>
-			<div>
-				user detail				
-			</div> -->
-			<div class="form-submit-buttons">
-				<button id="add-user">Add User</button>
-				<button id="cancel">Cancel</button>				
-			</div>
-		</div>	
+			<div class="details">
+				<form action="/" method="POST" novalidate>
+					<section class="new-user-details">
+						<h1>New User Details</h1>
+						<div class="user-name">
+							<input type="text" name="username" id="username">
+							<label for="username">Username</label>			
+						</div>
+						<div class="e-mail">
+							<input type="email" name="email" id="email">
+							<label for="email">Email</label>					
+						</div>
+						<div class="firstn">
+							<input type="text" name="first-name" id="first-name">
+							<label for="first-name">First Name</label>		
+						</div>
+						<div class="lastn">
+							<input type="text" name="last-name" id="last-name">
+							<label for="last-name">Last Name</label>			
+						</div>
+						<div>
+							<select name="role" id="role">
+								<option value=""></option>
+							    <option value="manager">Manager</option>
+							    <option value="developer">Developer</option>
+							    <option value="admin">Admin</option>
+							    <option value="QA">QA</option>
+							</select>
+							<label for="selected-role">Role</label>
+						</div>
+						<div>
+							<input type="checkbox" name="email-confirmation" id="email-confirmation">
+							<label for="email-confirmation">Send Email Confirmation</label>			
+						</div>
+					</section>
+					<section class="form-submit-buttons">
+						<button id="add-user" type="submit">Add User</button>
+						<button id="cancel">Cancel</button>				
+					</section>						
+				</form>
 	</div>
+	<script src="javascript/index.js"></script>
 </body>
 </html>
