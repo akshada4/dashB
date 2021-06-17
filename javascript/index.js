@@ -6,6 +6,7 @@ const fetchData = () => {
 	})
 }
 
+//displays user list table
 const displayUserList = async () => {
 	const userList = await fetchData();
 	const table = document.querySelector('table');
@@ -22,6 +23,7 @@ const displayUserList = async () => {
 	table.appendChild(tableBody);
 }
 
+//changes label position in the form on focusout
 const changeLabelPosition = (e) => {
 	const label = e.target.nextElementSibling;
 	if (e.target.value)
@@ -32,62 +34,90 @@ const changeLabelPosition = (e) => {
 
 const changeRoleLabel = (e) => {
 	const label = e.target.nextElementSibling;
-	console.log(label);
 	if (e.target.value)
 		label.setAttribute('style', 'display:none');
 	else 
 		label.setAttribute('style', 'display:inline-block');
 }
 
-const removeErrorMessage = () => {
-	if (document.querySelector('.error-message'))
-		document.querySelector('.error-message').remove();
+const removeMessage = () => {
+	if (document.querySelector('.message'))
+		document.querySelector('.message').remove();
 }
 
-const validationErrorDisplay = (errorMessage) => {
-	removeErrorMessage();
+const validationDisplay = (message, textColor) => {
+	removeMessage();
 	const text = document.createElement('p');
-	text.className = 'error-message';
-	text.setAttribute('style', 'font-size: 1.5rem; color: red; margin-top: 2rem');
+	text.className = 'message';
+	text.setAttribute('style', `font-family: sans-serif; 
+		font-size: 1.5rem; 
+		color: ${textColor}; 
+		margin-top: 2rem`);
 	const section = document.querySelector('.new-user-details');
-	text.innerHTML = errorMessage;
+	text.innerHTML = message;
 	section.appendChild(text);
 }
 
 const formValidation = (e) => {
 	e.preventDefault();
-	removeErrorMessage();
 	let errorMessages = [];
-	const alphanumeric = /^[a-z0-9]+$/i;
-	const validEmail = /\S+@\S+\.\S+/;
-	if (!alphanumeric.test(username.value))
+	const allowedUsername = /^[a-z0-9]+$/i;
+	const allowedEmail = /\S+@\S+\.\S+/;
+	let validate = true;
+
+	if (!allowedUsername.test(username.value))
 		errorMessages.push('Username must be Alphanumeric.');
-	if (!validEmail.test(email.value))
-		errorMessages.push('Enter valid email id.')
-	if (!username.value || !email.value || !firstName.value || !lastName.value || !role.value)
-		errorMessages.push('All fields must be filled.')
+	if (!allowedEmail.test(email.value))
+		errorMessages.push('Enter valid email id.');
+	if (!username.value || !email.value || !firstName.value || 
+		!lastName.value || !role.value || !uploadedImage.value)
+		errorMessages.push('All fields must be filled.');
+	if (uploadedImageSize > 1000)
+		errorMessages.push('Size of Profile Picture should be less then 1Kb.');
+	if (uploadedImageType != 'jpg' && uploadedImageType != 'png')
+		errorMessages.push('Profile picture should be a png or a jpg file.');
 
 	const errorLength = errorMessages.length;
-	if (errorLength > 0 && errorMessagesTracker != errorLength) {
+	if (errorLength > 0) {
 		let message = '' ;
+		validate = false;
 		errorMessagesTracker = errorLength;
 		errorMessages.forEach(errorMessage => { 
 			message += errorMessage + ' ';
 		});
-		validationErrorDisplay(message);
-	}	
+		validationDisplay(message, 'red');
+	}
+
+	if (validate) {
+		validationDisplay('New User was Added.', 'green');
+	}
 }
 
+const imageProperties = (e) => {
+	uploadedImageSize = e.explicitOriginalTarget.files[0].size;
+	uploadedImageType = e.explicitOriginalTarget.files[0].type.split('/')[1];
+}
+
+// 
 displayUserList();
-let errorMessagesTracker = 0 ;
+
+let uploadedImageSize = 0;
+let uploadedImageType = '';
+
+//document elements
 const username = document.querySelector('#username');
 const email = document.querySelector('#email');
 const firstName = document.querySelector('#first-name');
 const lastName = document.querySelector('#last-name');
 const role = document.querySelector('#role');
+const uploadedImage = document.querySelector('#img-upload');
+const form = document.querySelector('form');
+
+//events
+uploadedImage.addEventListener('change', imageProperties);
 username.addEventListener('focusout', changeLabelPosition);
 email.addEventListener('focusout', changeLabelPosition);
 firstName.addEventListener('focusout', changeLabelPosition);
 lastName.addEventListener('focusout', changeLabelPosition);
 role.addEventListener('change', changeRoleLabel);
-document.querySelector('form').addEventListener('submit', formValidation);
+form.addEventListener('submit', formValidation);
