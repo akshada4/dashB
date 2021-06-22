@@ -131,31 +131,34 @@ h1 {
 	height: 16.1rem;
 	overflow-y: auto;
 	position: relative;
+	border-right: 1px solid var(--secondary-color);
 }
 
 .user-details-header table {
-	width: 99.3%;
-	height: 4rem;
+	width: 100%;
 }
 
 .user-details-header table tr th:nth-child(1) {
-	width: 44.525%
+	width: 44%
 }
 
 .user-details-header table tr th:nth-child(2) {
-	width: 44.525%;
+	width: 44%;
 }
 
 .user-details-header table tr th:nth-child(3) {
-	width: 10.7%;
+	width: 11.3%;
 }
+
+
 
 thead th {
 	background-color: var(--user-content-grey);
 	top: 0;
-	border: 1px solid black;
+	border: 1px solid var(--secondary-color);
 	border-bottom: 0;
-	padding-left: 2rem;
+	padding-left: 1rem;
+	height: 4rem;
 }
 
 table {
@@ -178,6 +181,11 @@ td {
 
 td:last-child {
 	width: 10%;
+	text-align: center;
+	border-right: 0;
+}
+
+th:last-child {
 	text-align: center;
 }
 
