@@ -128,9 +128,34 @@ h1 {
 
 .user-details-table {
 	margin-bottom: 8rem;
-	height: 20.1rem;
+	height: 16.1rem;
 	overflow-y: auto;
 	position: relative;
+}
+
+.user-details-header table {
+	width: 99.3%;
+	height: 4rem;
+}
+
+.user-details-header table tr th:nth-child(1) {
+	width: 44.525%
+}
+
+.user-details-header table tr th:nth-child(2) {
+	width: 44.525%;
+}
+
+.user-details-header table tr th:nth-child(3) {
+	width: 10.7%;
+}
+
+thead th {
+	background-color: var(--user-content-grey);
+	top: 0;
+	border: 1px solid black;
+	border-bottom: 0;
+	padding-left: 2rem;
 }
 
 table {
@@ -140,27 +165,19 @@ table {
 	table-layout: fixed;
 }
 
-thead th {
-	position: sticky;
-	z-index: -1;
-	background-color: var(--user-content-grey);
-	top: 0;
+.user-details-table table {
+	width: 100%;
 }
 
-tbody td {
-	position: relative;
-	z-index: -2;
-}
-
-td, th {
-	width: 40vw;
+td {
+	width: 40%;
 	height: 4rem;
 	padding-left: 1rem;
 	border: 1px solid var(--secondary-color);
 }
 
-th:last-child, td:last-child {
-	width: 10vw;
+td:last-child {
+	width: 10%;
 	text-align: center;
 }
 

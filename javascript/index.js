@@ -2,14 +2,20 @@ const fetchData = () => {
 	return fetch('user.json')
 	.then(response => response.json())
 	.then(data => {
-		return data;
+		return [data, data.length];
 	})
 }
 
 //displays user list table
 const displayUserList = async () => {
-	const userList = await fetchData();
-	const table = document.querySelector('table');
+	const [userList, dataLength]= await fetchData();
+	if (dataLength < 5) {
+		const tableHeader = document.querySelector('.user-details-header table');
+		tableHeader.setAttribute('style','width: 100%');
+	}
+	const div = document.createElement('div');
+	div.setAttribute('class','user-details-table');
+	const table = document.createElement('table');
 	const tableBody = document.createElement('tbody');
 	userList.forEach(user => {
 		let row = tableBody.insertRow();
@@ -21,6 +27,9 @@ const displayUserList = async () => {
 		action.innerHTML = "action";
 	});
 	table.appendChild(tableBody);
+	div.appendChild(table);
+	document.querySelector('.user-content')
+		.insertBefore(div, document.querySelector('.user-details-header').nextSibling);
 }
 
 //changes label position in the form on focusout
